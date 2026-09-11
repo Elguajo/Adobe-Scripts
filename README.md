@@ -1,48 +1,36 @@
-<!-- HERO -->
 # Adobe Scripts
 
-### Automation scripts and small tools for Adobe applications
+### Automation scripts and small workflow tools for Adobe applications
 
-A personal collection of useful scripts for  
-**Adobe Photoshop, Illustrator, After Effects, Premiere Pro and InDesign.**
-
-<br>
+A personal collection of practical scripts for **Adobe Photoshop, Illustrator, After Effects, Premiere Pro and InDesign**.
 
 [![GitHub stars](https://img.shields.io/github/stars/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Stars)](https://github.com/Elguajo/Adobe-Scripts/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Forks)](https://github.com/Elguajo/Adobe-Scripts/forks)
 [![GitHub issues](https://img.shields.io/github/issues/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Issues)](https://github.com/Elguajo/Adobe-Scripts/issues)
-
-<br>
 
 ![Last commit](https://img.shields.io/github/last-commit/Elguajo/Adobe-Scripts?style=flat-square&logo=github)
 ![Repo size](https://img.shields.io/github/repo-size/Elguajo/Adobe-Scripts?style=flat-square&logo=github)
 ![ExtendScript](https://img.shields.io/badge/ExtendScript-JSX-yellow?style=flat-square&logo=javascript&logoColor=black)
 ![Adobe](https://img.shields.io/badge/Adobe-Automation-FF0000?style=flat-square&logo=adobe&logoColor=white)
 
-<br>
-
 > Small scripts for repetitive Adobe tasks that should not require repetitive manual work.
-
-</div>
 
 ---
 
 ## ✨ About
 
-**Adobe Scripts** is my personal collection of automation scripts, helpers and workflow tools for Adobe applications.
+**Adobe Scripts** is a collection of focused automation scripts, helpers and workflow utilities for day-to-day creative work.
 
-The repository is intended for scripts that solve practical repetitive tasks:
+Typical use cases:
 
 - batch exporting
-- layer processing
-- document preparation
-- asset generation
-- file organization
+- layer and artboard processing
+- document cleanup
+- naming and organization
+- timeline and composition setup
+- preflight checks
 - repetitive editing operations
-- workflow automation
 - small quality-of-life utilities
-
-The main goal is simple:
 
 > **Do repetitive work once in code instead of doing it manually every time.**
 
@@ -50,20 +38,22 @@ The main goal is simple:
 
 ## 📦 Script Library
 
+The library is intentionally organized by **application → task**. The description tells you *why you would run a script*, not just what API it calls.
+
+**Status:** `✅ Available` = already in active use / established in this repo. `🧪 Needs host test` = added from documented Adobe APIs and common production workflows, but still needs a real run inside the Adobe host before being marked fully verified. `⚠️ Legacy` = relies on an API Adobe is moving away from.
+
 ### 🟦 Adobe Photoshop
 
-| Script | Description | Status |
-|---|---|:---:|
-| [`Export Layers — Adaptive Square PNG`](photoshop/export/export-layers-adaptive-square.jsx) | Exports visible layers as separate transparent PNG files using an adaptive square canvas without scaling the original object | ✅ Available |
+| Script | Use it when… | What it does | Status |
+|---|---|---|:---:|
+| [`Export Layers — Adaptive Square PNG`](photoshop/export/export-layers-adaptive-square.jsx) | You need separate PNG assets from layers without making small objects artificially huge | Detects each visible layer's real bounds, keeps the object at its original size, creates an adaptive square transparent canvas with padding, centers the object and exports PNG | ✅ Available |
+| [`Save All Open Documents`](photoshop/utilities/save-all-open-documents.jsx) | You have many edited PSDs open and do not want to save them one by one | Saves every modified document that already has a file path; skips untitled/new documents instead of unexpectedly opening Save As | 🧪 Needs host test |
+| [`Remove Empty Pixel Layers`](photoshop/layers/remove-empty-pixel-layers.jsx) | A PSD has accumulated dozens of blank raster layers | Recursively removes only empty **normal pixel layers** while preserving text, shapes, smart objects, adjustment layers and groups | 🧪 Needs host test |
 
 <details>
 <summary><strong>Export Layers — Adaptive Square PNG</strong></summary>
 
-<br>
-
-The script processes every visible Photoshop layer individually.
-
-### What it does
+The script processes visible Photoshop layers individually.
 
 - detects the actual object bounds
 - creates a temporary document
@@ -73,113 +63,66 @@ The script processes every visible Photoshop layer individually.
 - calculates an adaptive square canvas
 - adds configurable free space around the object
 - centers the object horizontally and vertically
-- exports the result as a transparent PNG
+- exports a transparent PNG
 - leaves the original PSD unchanged
 
-### Example
-
 ```text
-Original layer
+Original object                 Exported PNG
 
-       ┌───────────┐
-       │  OBJECT   │
-       │           │
-       └───────────┘
-
-
-Exported PNG
-
-┌───────────────────────┐
-│                       │
-│     ┌───────────┐     │
-│     │  OBJECT   │     │
-│     │           │     │
-│     └───────────┘     │
-│                       │
-└───────────────────────┘
-
-Object size → preserved
-Canvas size → adaptive
-Background → transparent
+    ┌─────────┐             ┌───────────────────┐
+    │ OBJECT  │             │                   │
+    │         │      →      │   ┌─────────┐     │
+    └─────────┘             │   │ OBJECT  │     │
+                            │   │         │     │
+Object size: preserved      │   └─────────┘     │
+                            │                   │
+                            └───────────────────┘
+                            Canvas: adaptive square
 ```
-
-### Run
-
-In Photoshop:
-
-```text
-File
-└── Scripts
-    └── Browse...
-```
-
-Select:
-
-```text
-photoshop/export/export-layers-adaptive-square.jsx
-```
-
-Then choose the destination folder.
 
 </details>
+
+### 🟧 Adobe Illustrator
+
+| Script | Use it when… | What it does | Status |
+|---|---|---|:---:|
+| [`Fit Artboards to Artwork`](illustrator/artboards/fit-artboards-to-artwork.jsx) | Your artboards contain lots of unnecessary empty space or need consistent padding around artwork | Fits every artboard to artwork on that artboard and expands it by a user-defined padding value; artwork is not scaled or moved | 🧪 Needs host test |
+| [`Batch Rename Artboards`](illustrator/artboards/batch-rename-artboards.jsx) | You are preparing icons, screens, exports or variants and need predictable artboard names | Renames all artboards using a base name, starting number and zero-padded sequence such as `Icon 01`, `Icon 02`… | 🧪 Needs host test |
+
+### 🟪 Adobe After Effects
+
+| Script | Use it when… | What it does | Status |
+|---|---|---|:---:|
+| [`Rename Selected Layers Sequentially`](after-effects/layers/rename-selected-layers-sequentially.jsx) | A composition contains repeated layers that should follow a clean naming convention | Renames selected layers from top to bottom with a base name and zero-padded numbering | 🧪 Needs host test |
+| [`Work Area to Selected Layers`](after-effects/compositions/work-area-to-selected-layers.jsx) | You want to preview or render exactly the span occupied by selected layers | Sets the comp work area from the earliest selected layer in-point to the latest selected layer out-point | 🧪 Needs host test |
+
+### 🟥 Adobe InDesign
+
+| Script | Use it when… | What it does | Status |
+|---|---|---|:---:|
+| [`Find Overset Text`](indesign/text/find-overset-text.jsx) | Before export/print you need to catch text hidden outside text frames | Scans text frames for overset text, selects the first problem and optionally saves a full text report with page references | 🧪 Needs host test |
+| [`Export Pages as Separate PDFs`](indesign/export/export-pages-separate-pdf.jsx) | A multi-page document must be delivered as one PDF per page | Exports every page to an individual PDF using the current InDesign PDF export settings and restores the original page-range preference afterward | 🧪 Needs host test |
+
+### 🟩 Adobe Premiere Pro
+
+> Premiere Pro moved third-party extensibility toward UXP. These JSX utilities use the legacy ExtendScript API and should be treated as migration candidates.
+
+| Script | Use it when… | What it does | Status |
+|---|---|---|:---:|
+| [`Batch Rename Selected Project Items`](premiere-pro/project/batch-rename-selected-project-items.jsx) | Your Project panel has many clips/bins that need clean sequential display names | Renames the current Project-panel selection with a base name and zero-padded numbering; source files on disk are not renamed | ⚠️ Legacy / 🧪 |
+| [`Set Sequence In/Out to Selected Clips`](premiere-pro/sequence/set-in-out-to-selected-clips.jsx) | You want the sequence In/Out range to exactly match a timeline selection | Finds the earliest start and latest end among selected timeline clips and sets sequence In/Out to that span | ⚠️ Legacy / 🧪 |
 
 ---
 
 ## 🧩 Adobe Applications
 
-<table>
-<tr>
-<td align="center" width="20%">
-
-### Photoshop
-**Active**
-
-Exporting, layers, assets  
-and workflow automation.
-
-</td>
-
-<td align="center" width="20%">
-
-### Illustrator
-**Planned**
-
-Vector processing  
-and repetitive operations.
-
-</td>
-
-<td align="center" width="20%">
-
-### After Effects
-**Planned**
-
-Composition and  
-motion workflow tools.
-
-</td>
-
-<td align="center" width="20%">
-
-### Premiere Pro
-**Planned**
-
-Editing and  
-project automation.
-
-</td>
-
-<td align="center" width="20%">
-
-### InDesign
-**Planned**
-
-Layout and  
-document automation.
-
-</td>
-</tr>
-</table>
+| Application | Status | Focus |
+|---|---|---|
+| Photoshop | **Active** | layers, assets, batch export, document cleanup |
+| Illustrator | **Active** | artboards, naming, vector workflow automation |
+| After Effects | **Active** | layers, compositions, timeline workflow |
+| Premiere Pro | **Active / legacy JSX** | project organization and sequence utilities |
+| InDesign | **Active** | preflight, text, page export and document automation |
 
 ---
 
@@ -191,114 +134,103 @@ Adobe-Scripts/
 ├── photoshop/
 │   ├── export/
 │   │   └── export-layers-adaptive-square.jsx
-│   │
 │   ├── layers/
+│   │   └── remove-empty-pixel-layers.jsx
 │   └── utilities/
+│       └── save-all-open-documents.jsx
 │
 ├── illustrator/
+│   └── artboards/
+│       ├── batch-rename-artboards.jsx
+│       └── fit-artboards-to-artwork.jsx
 │
 ├── after-effects/
+│   ├── compositions/
+│   │   └── work-area-to-selected-layers.jsx
+│   └── layers/
+│       └── rename-selected-layers-sequentially.jsx
 │
 ├── premiere-pro/
+│   ├── project/
+│   │   └── batch-rename-selected-project-items.jsx
+│   └── sequence/
+│       └── set-in-out-to-selected-clips.jsx
 │
 ├── indesign/
+│   ├── export/
+│   │   └── export-pages-separate-pdf.jsx
+│   └── text/
+│       └── find-overset-text.jsx
 │
 ├── shared/
-│
 └── README.md
 ```
 
-Scripts are grouped first by **Adobe application**, then by their purpose.
-
 ---
 
-## 🚀 Installation
+## 🚀 Running scripts
 
-Most scripts do not require installation.
+### Photoshop / Illustrator
 
-### Run a JSX script manually
+Standalone JSX scripts can normally be launched from the application's Scripts menu or through **Browse / Other Script** depending on the host version. Frequently used scripts can be placed in the application's Scripts folder and the app restarted.
 
-1. Download the `.jsx` file.
-2. Open the required Adobe application.
-3. Open:
+### After Effects
 
-```text
-File → Scripts → Browse...
-```
+Run `.jsx` files from **File → Scripts → Run Script File…**, or install them in the After Effects Scripts folder / a script launcher.
 
-4. Select the script.
+### InDesign
 
-That's it.
+Open **Window → Utilities → Scripts**, reveal the Scripts Panel folder, place the `.jsx` file there, then double-click it in the Scripts panel.
 
----
+### Premiere Pro
 
-## ⚡ Optional permanent installation
-
-For scripts you use frequently, you can place them inside the application's Scripts directory.
-
-After restarting the Adobe application, the script can appear directly inside:
-
-```text
-File → Scripts
-```
-
-The exact Scripts directory depends on the Adobe application and installed version.
+The Premiere files in this repository currently target the legacy ExtendScript API. Execution depends on your scripting/CEP development setup; these files are kept small so they can also be migrated to UXP as the repository evolves.
 
 ---
 
 ## 🧠 Principles
 
-Scripts in this repository should follow a few basic rules:
-
 ```text
 ✓ automate repetitive work
+✓ keep each script focused on one useful task
 ✓ avoid destructive changes when possible
-✓ preserve the source document
+✓ preserve source documents when the task allows it
+✓ make destructive behavior explicit before running
 ✓ expose important configuration clearly
-✓ keep scripts focused on one task
 ✓ prefer predictable behavior over hidden magic
+✓ document what the script is for in Script Library
 ```
-
-Whenever possible, temporary documents and temporary layers are used instead of modifying source assets.
 
 ---
 
 ## 🛠 Technologies
 
-<div align="center">
-
 ![JavaScript](https://img.shields.io/badge/JavaScript-ExtendScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![JSX](https://img.shields.io/badge/Adobe-JSX-FF0000?style=for-the-badge&logo=adobe&logoColor=white)
 ![Photoshop](https://img.shields.io/badge/Photoshop-Scripting-31A8FF?style=for-the-badge&logo=adobephotoshop&logoColor=white)
 
-</div>
-
-Adobe automation in this repository may use:
+The repository may use:
 
 - ExtendScript / JSX
-- Adobe scripting APIs
-- JavaScript
+- Adobe scripting DOM APIs
 - Action Manager APIs where necessary
+- UXP for newer Adobe hosts as scripts are migrated or newly written
 - application-specific scripting interfaces
 
 ---
 
 ## 🗺 Roadmap
 
-More scripts will be added as real workflow problems appear.
+The next useful additions should come from real production pain points rather than adding scripts just to increase the count.
 
-Planned categories include:
+Likely areas:
 
-- [ ] Photoshop batch export tools
-- [ ] Photoshop layer utilities
-- [ ] Photoshop document utilities
-- [ ] Illustrator automation
-- [ ] After Effects workflow tools
-- [ ] Premiere Pro utilities
-- [ ] InDesign automation
-- [ ] reusable shared helpers
-
-The repository is intentionally workflow-driven rather than built around artificial feature targets.
+- Photoshop batch export and smart-object utilities
+- Illustrator export / asset generation
+- After Effects project cleanup and render helpers
+- Premiere Pro UXP replacements for legacy JSX utilities
+- InDesign links, styles and preflight helpers
+- reusable shared naming / file helpers
 
 ---
 
@@ -308,10 +240,9 @@ Found a bug or have an improvement idea?
 
 [![Open an issue](https://img.shields.io/badge/Open_an-Issue-black?style=for-the-badge&logo=github)](https://github.com/Elguajo/Adobe-Scripts/issues)
 
-When reporting a problem, it helps to include:
+Useful issue details:
 
-- Adobe application
-- application version
+- Adobe application and version
 - operating system
 - script name
 - expected result
@@ -324,32 +255,10 @@ When reporting a problem, it helps to include:
 
 If one of these scripts saves you time, you can star the repository.
 
-<div align="center">
-
 [![Star Adobe Scripts](https://img.shields.io/github/stars/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Star%20Adobe-Scripts&color=yellow)](https://github.com/Elguajo/Adobe-Scripts)
-
-</div>
 
 ---
 
-<div align="center">
+**Adobe Scripts** — built for removing repetitive work from creative workflows.
 
-### Adobe Scripts
-
-**Built for removing repetitive work from creative workflows.**
-
-[Repository](https://github.com/Elguajo/Adobe-Scripts)
-&nbsp;•&nbsp;
-[Issues](https://github.com/Elguajo/Adobe-Scripts/issues)
-&nbsp;•&nbsp;
-[Profile](https://github.com/Elguajo)
-
-<br>
-
-<sub>Made and maintained by <a href="https://github.com/Elguajo">@Elguajo</a></sub>
-
-<br><br>
-
-<a href="#adobe-scripts">Back to top ↑</a>
-
-</div>
+[Repository](https://github.com/Elguajo/Adobe-Scripts) · [Issues](https://github.com/Elguajo/Adobe-Scripts/issues) · [@Elguajo](https://github.com/Elguajo)
