@@ -1,8 +1,6 @@
 # Adobe Scripts
 
-### Automation scripts and small workflow tools for Adobe applications
-
-A personal collection of practical scripts for **Adobe Photoshop, Illustrator, After Effects, Premiere Pro and InDesign**.
+Practical automation scripts for **Adobe Photoshop, Illustrator, After Effects, Premiere Pro and InDesign**.
 
 [![GitHub stars](https://img.shields.io/github/stars/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Stars)](https://github.com/Elguajo/Adobe-Scripts/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Forks)](https://github.com/Elguajo/Adobe-Scripts/forks)
@@ -10,29 +8,6 @@ A personal collection of practical scripts for **Adobe Photoshop, Illustrator, A
 
 ![Last commit](https://img.shields.io/github/last-commit/Elguajo/Adobe-Scripts?style=flat-square&logo=github)
 ![Repo size](https://img.shields.io/github/repo-size/Elguajo/Adobe-Scripts?style=flat-square&logo=github)
-![ExtendScript](https://img.shields.io/badge/ExtendScript-JSX-yellow?style=flat-square&logo=javascript&logoColor=black)
-![Adobe](https://img.shields.io/badge/Adobe-Automation-FF0000?style=flat-square&logo=adobe&logoColor=white)
-
-> Small scripts for repetitive Adobe tasks that should not require repetitive manual work.
-
----
-
-## ✨ About
-
-**Adobe Scripts** is a collection of focused automation scripts, helpers and workflow utilities for day-to-day creative work.
-
-Typical use cases:
-
-- batch exporting
-- layer and artboard processing
-- document cleanup
-- naming and organization
-- timeline and composition setup
-- preflight checks
-- repetitive editing operations
-- small quality-of-life utilities
-
-> **Do repetitive work once in code instead of doing it manually every time.**
 
 ---
 
