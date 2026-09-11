@@ -1,16 +1,4 @@
 <!-- HERO -->
-
-<div align="center">
-
-<a href="https://github.com/Elguajo">
-  <img
-    width="96"
-    height="96"
-    src="https://avatars.githubusercontent.com/u/38797754?v=4"
-    alt="Elguajo"
-  >
-</a>
-
 # Adobe Scripts
 
 ### Automation scripts and small tools for Adobe applications
