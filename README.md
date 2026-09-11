@@ -40,7 +40,7 @@ Typical use cases:
 
 The library is intentionally organized by **application → task**. The description tells you *why you would run a script*, not just what API it calls.
 
-**Status:** `✅ Available` = already in active use / established in this repo. `🧪 Needs host test` = added from documented Adobe APIs and common production workflows, but still needs a real run inside the Adobe host before being marked fully verified. `⚠️ Legacy` = relies on an API Adobe is moving away from.
+**Status:** `✅ Available` = already in active use / established in this repo. `🧪 Needs host test` = added from documented Adobe APIs and common production workflows, but still needs a real run inside the Adobe host before being marked fully verified. `⚠️ Legacy` = relies on an API Adobe is moving away from. `↗ External project` = maintained as a separate repository because it has its own documentation or larger project structure.
 
 ### 🟦 Adobe Photoshop
 
@@ -91,10 +91,13 @@ Object size: preserved      │   └─────────┘     │
 
 ### 🟪 Adobe After Effects
 
-| Script | Use it when… | What it does | Status |
+| Script / Project | Use it when… | What it does | Status |
 |---|---|---|:---:|
 | [`Rename Selected Layers Sequentially`](after-effects/layers/rename-selected-layers-sequentially.jsx) | A composition contains repeated layers that should follow a clean naming convention | Renames selected layers from top to bottom with a base name and zero-padded numbering | 🧪 Needs host test |
 | [`Work Area to Selected Layers`](after-effects/compositions/work-area-to-selected-layers.jsx) | You want to preview or render exactly the span occupied by selected layers | Sets the comp work area from the earliest selected layer in-point to the latest selected layer out-point | 🧪 Needs host test |
+| [`ffx2gif`](https://github.com/Elguajo/ffx2gif) | You create or maintain text animation presets (`.ffx`) and need visual previews instead of opening presets one by one | Lightweight After Effects tool that automatically generates high-quality `.gif` previews for text animation presets | ↗ External project |
+
+> **Why is `ffx2gif` separate?** It is a larger standalone project with its own README, usage documentation and project context, so this repository links to it instead of duplicating that material here.
 
 ### 🟥 Adobe InDesign
 
@@ -120,7 +123,7 @@ Object size: preserved      │   └─────────┘     │
 |---|---|---|
 | Photoshop | **Active** | layers, assets, batch export, document cleanup |
 | Illustrator | **Active** | artboards, naming, vector workflow automation |
-| After Effects | **Active** | layers, compositions, timeline workflow |
+| After Effects | **Active** | layers, compositions, timeline workflow, linked standalone tools |
 | Premiere Pro | **Active / legacy JSX** | project organization and sequence utilities |
 | InDesign | **Active** | preflight, text, page export and document automation |
 
@@ -165,6 +168,8 @@ Adobe-Scripts/
 ├── shared/
 └── README.md
 ```
+
+Standalone projects that are too large or specialized to live inside this repository are linked directly from **Script Library** instead of being duplicated here.
 
 ---
 
