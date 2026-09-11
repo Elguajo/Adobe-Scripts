@@ -117,18 +117,6 @@ Object size: preserved      │   └─────────┘     │
 
 ---
 
-## 🧩 Adobe Applications
-
-| Application | Status | Focus |
-|---|---|---|
-| Photoshop | **Active** | layers, assets, batch export, document cleanup |
-| Illustrator | **Active** | artboards, naming, vector workflow automation |
-| After Effects | **Active** | layers, compositions, timeline workflow, linked standalone tools |
-| Premiere Pro | **Active / legacy JSX** | project organization and sequence utilities |
-| InDesign | **Active** | preflight, text, page export and document automation |
-
----
-
 ## 📁 Repository Structure
 
 ```text
@@ -190,37 +178,6 @@ Open **Window → Utilities → Scripts**, reveal the Scripts Panel folder, plac
 ### Premiere Pro
 
 The Premiere files in this repository currently target the legacy ExtendScript API. Execution depends on your scripting/CEP development setup; these files are kept small so they can also be migrated to UXP as the repository evolves.
-
----
-
-## 🧠 Principles
-
-```text
-✓ automate repetitive work
-✓ keep each script focused on one useful task
-✓ avoid destructive changes when possible
-✓ preserve source documents when the task allows it
-✓ make destructive behavior explicit before running
-✓ expose important configuration clearly
-✓ prefer predictable behavior over hidden magic
-✓ document what the script is for in Script Library
-```
-
----
-
-## 🛠 Technologies
-
-![JavaScript](https://img.shields.io/badge/JavaScript-ExtendScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![JSX](https://img.shields.io/badge/Adobe-JSX-FF0000?style=for-the-badge&logo=adobe&logoColor=white)
-![Photoshop](https://img.shields.io/badge/Photoshop-Scripting-31A8FF?style=for-the-badge&logo=adobephotoshop&logoColor=white)
-
-The repository may use:
-
-- ExtendScript / JSX
-- Adobe scripting DOM APIs
-- Action Manager APIs where necessary
-- UXP for newer Adobe hosts as scripts are migrated or newly written
-- application-specific scripting interfaces
 
 ---
 
