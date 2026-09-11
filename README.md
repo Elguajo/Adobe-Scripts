@@ -22,6 +22,7 @@ The library is intentionally organized by **application → task**. The descript
 | Script | Use it when… | What it does | Status |
 |---|---|---|:---:|
 | [`Export Layers — Adaptive Square PNG`](photoshop/export/export-layers-adaptive-square.jsx) | You need separate PNG assets from layers without making small objects artificially huge | Detects each visible layer's real bounds, keeps the object at its original size, creates an adaptive square transparent canvas with padding, centers the object and exports PNG | ✅ Available |
+| [`Export All Open Documents to PNG`](photoshop/export/export-all-open-documents-to-png.jsx) | You have many Photoshop documents open and need a PNG copy of every current document in one folder | Prompts for an output folder, exports every open document as PNG-24 using its current visible composite, preserves transparency, avoids overwriting duplicate names and leaves the open documents untouched | 🧪 Needs host test |
 | [`Save All Open Documents`](photoshop/utilities/save-all-open-documents.jsx) | You have many edited PSDs open and do not want to save them one by one | Saves every modified document that already has a file path; skips untitled/new documents instead of unexpectedly opening Save As | 🧪 Needs host test |
 | [`Remove Empty Pixel Layers`](photoshop/layers/remove-empty-pixel-layers.jsx) | A PSD has accumulated dozens of blank raster layers | Recursively removes only empty **normal pixel layers** while preserving text, shapes, smart objects, adjustment layers and groups | 🧪 Needs host test |
 
@@ -99,6 +100,7 @@ Adobe-Scripts/
 │
 ├── photoshop/
 │   ├── export/
+│   │   ├── export-all-open-documents-to-png.jsx
 │   │   └── export-layers-adaptive-square.jsx
 │   ├── layers/
 │   │   └── remove-empty-pixel-layers.jsx
