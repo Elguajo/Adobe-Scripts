@@ -1,4 +1,5 @@
 <div align="center">
+    
 # Adobe Scripts
 
 Practical automation scripts for **Adobe Photoshop, Illustrator, After Effects, Premiere Pro and InDesign**.
