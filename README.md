@@ -1,14 +1,14 @@
 # Adobe Scripts
 
 Practical automation scripts for **Adobe Photoshop, Illustrator, After Effects, Premiere Pro and InDesign**.
-
+<div>
 [![GitHub stars](https://img.shields.io/github/stars/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Stars)](https://github.com/Elguajo/Adobe-Scripts/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Forks)](https://github.com/Elguajo/Adobe-Scripts/forks)
 [![GitHub issues](https://img.shields.io/github/issues/Elguajo/Adobe-Scripts?style=for-the-badge&logo=github&label=Issues)](https://github.com/Elguajo/Adobe-Scripts/issues)
 
 ![Last commit](https://img.shields.io/github/last-commit/Elguajo/Adobe-Scripts?style=flat-square&logo=github)
 ![Repo size](https://img.shields.io/github/repo-size/Elguajo/Adobe-Scripts?style=flat-square&logo=github)
-
+</div>
 ---
 
 ## 📦 Script Library
